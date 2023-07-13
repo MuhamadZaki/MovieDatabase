@@ -1,7 +1,8 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template,json
 from flask import request
 
 app = Flask(__name__)
+
 
 movies = [
     [
@@ -287,7 +288,27 @@ trandings = [
     
 ]
 
+secs= [
+    {
+        "image": "https://www.themoviedb.org/movie/1067282",
+        "title": "DemonSlayer",
+        "relase_date": "02/03/2023",
+        "genres": ["Action", "Animation", "Fantasy"],
+        "duration": "1h 55m",
+        "info": {"rating":74},
+        "description": "After his family is viciously murdered, a kind-hearted boy named Tanjiro Kamado resolves to become a Demon Slayer in hopes of turning his younger sister Nezuko back into a human. Together with his comrades, Zenitsu and Inosuke, along with one of the top-ranking members of the Demon Slayer Corps, Tengen Uzui, Tanjiro embarks on a mission within the Entertainment District, where they encounter the formidable, high-ranking demons, Daki and Gyutaro."
+    },
+    {
+        "image": "https://www.themoviedb.org/movie/113082-beruseruku-ougon-jidaihen-i-haou-no-tamago",
+        "title": "Berserk: The Golden Age",
+        "relase_date": "02/03/2012",
+        "genres": [ "Action & Adventure", "Fantasy", "Animation"],
+        "duration": "1h 16m",
+        "info": {"rating":72},
+        "description": "Guts, an immensely strong sword-for-hire, has little direction in his life, simply fighting one battle after the next. However, this all changes suddenly when he meets and is bested by Griffith, a beautiful and charismatic young man who leads the Band of the Hawk mercenary army. After Guts joins the Band and the relationship between the two men begins to blossom, Casca, the tough, lone swordswoman in the Band of the Hawk, struggles to accept Guts and the influence he has on the world around her. While the two men begin to fight together, Griffith continues to rise to power, all seemingly in order to reach his mysterious, prophesied goals. What lengths will Guts and Griffith go to in order to reach these goals, and where will fate take the two men?"
 
+    },
+]
 
 
 @app.route("/")
@@ -314,3 +335,18 @@ def get_popular():
         if tranding["info"]["rating"] >= 70:
             popular_movies.append(tranding)
     return popular_movies
+
+
+@app.route("/search", methods = ["GET"])
+def get_search():
+    data = request.args.get('data')
+    if data:
+        results_s = [item for item in secs if item["title"] == data]
+        if results_s:
+            return jsonify(results_s[0])
+        else:
+            return jsonify({'message':'Data not found!'}), 404
+    
+    else:
+        return jsonify({'message':'Search key not provided!'}),404
+    
