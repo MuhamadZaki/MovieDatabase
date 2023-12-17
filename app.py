@@ -1,41 +1,50 @@
+# Mengimpor modul-modul yang diperlukan dari library Flask
 from flask import Flask, jsonify, render_template,json
 from flask import request
 
+# Membuat instance Flask dengan nama aplikasinya 'app'
 app = Flask(__name__)
 
-
+# Mendefinisikan list 'movies' yang berisi dua sub-list, masing-masing mewakili satu set film
 movies = [
+    # Sub list pertama!
     [
+        # Informasi movies pertama dalam sub list pertama dalam bentuk dictionary
         {
             "image": "https://www.themoviedb.org/t/p/w188_and_h282_bestv2/hEhGrcST85vMd63PBDgPBqih2tR.jpg",
             "title": "Demon Slayer: Kimetsu no Yaiba -To the Swordsmith Village-",
             "release_date": "February 3, 2023",
             "description": "After his family is viciously murdered, a kind-hearted boy named Tanjiro Kamado resolves to become a Demon Slayer in hopes of turning his younger sister Nezuko back into a human. Together with his comrades, Zenitsu and Inosuke,"
         }, 
+        # Informasi movies kedua dalam sub list pertama, bentuk dictionary
         {
             "image": "https://www.themoviedb.org/t/p/w188_and_h282_bestv2/9YEGawvjaRgnyW6QVcUhFJPFDco.jpg",
             "title": "Black Clover: Sword of the Wizard King",
             "release_date": "June 16, 2023",
             "description": "As a lionhearted boy who can’t wield magic strives for the title of Wizard King, four banished Wizard Kings of yore return to crush the Clover Kingdom."
         },
+          # Informasi movies ketiga dalam sub list pertama, bentuk dictionary
         {
             "image": "https://www.themoviedb.org/t/p/w188_and_h282_bestv2/iTmJwZxGHYAk5EiVc68UvZTMSuP.jpg",
             "title": "Demon Slayer: Kimetsu no Yaiba the Hashira Meeting Arc",
             "release_date": "April 15, 2021",
             "description": "Tanjiro and his sister Nezuko have been apprehended by the Demon Slayer Hashira, a group of extremely skilled swordfighters. Tanjiro undergoes trial for violating the Demon Slayer code, specifically smuggling Nezuko, a Demon,"
         },
+          # Informasi movies keempat dalam sub list pertama, bentuk dictionary
         {
             "image": "https://www.themoviedb.org/t/p/w188_and_h282_bestv2/mFp3l4lZg1NSEsyxKrdi0rNK8r1.jpg",
             "title": "To Catch a Killer",
             "release_date": "April 6, 2023",
             "description": "Baltimore. New Year's Eve. A talented but troubled police officer is recruited by the FBI's chief investigator to help profile and track down a mass murderer."
         },
+          # Informasi movies kelima dalam sub list pertama, bentuk dictionary
         {
             "image": "https://www.themoviedb.org/t/p/w188_and_h282_bestv2/wq1UG5lPCKpOJgmgpKJszKvoMUe.jpg",
             "title": "Demon Slayer: Kimetsu no Yaiba Mt. Natagumo Arc",
             "release_date": "April 15, 2021",
             "description": "Tanjiro, now a registered Demon Slayer, teams up with fellow slayers Zenitsu and Inosuke to investigate missing person cases on the mountain Natagumo. After the group is split up during a fight with possessed swordfighters, they"
         },
+          # Informasi movies keenam dalam sub list pertama, bentuk dictionary
         {
 
             "image": "https://www.themoviedb.org/movie/820232",
@@ -43,6 +52,7 @@ movies = [
             "relase_date": "March 29, 2019",
             "description" : "Tanjiro finds his family slaughtered and the lone survivor, his sister Nezuko Kamado, turned into a Demon. To his surprise, however, Nezuko still shows signs of human emotion and thought. Thus begins Tanjiro's journey to seek out the Demon who killed their family and turn his sister human again. A recap film of Kimetsu no Yaiba, covering episodes 1-5 with extra footage."
         },
+          # Informasi movies ketujuh dalam sub list pertama, bentuk dictionary
         {
             "image": "https://www.themoviedb.org/movie/76597-k",
             "title": "K",
@@ -51,6 +61,7 @@ movies = [
 
 
         },
+          # Informasi movies kedelapan dalam sub list pertama, bentuk dictionary
         {
             "image": "https://www.themoviedb.org/movie/895003",
             "title" : "Demon Slayer: Kimetsu no Yaiba - Asakusa Arc",
@@ -58,6 +69,7 @@ movies = [
             "description": "Tanjiro ventures to Asakusa, Tokyo for his second mission with the Demon Slayer Corps."
             
         },
+          # Informasi movies kesembilan dalam sub list pertama, bentuk dictionary
         {
             "image": "https://www.themoviedb.org/movie/619329-munthiri-kaadu",
             "title": "Munthiri Kaadu",
@@ -65,6 +77,7 @@ movies = [
             "description": "In a Village Where they used to Honor Kill Love couples of the opposite cast and in that village A girl and boy from the opposite cast who used to be friends are getting pressure from village people that they love each other . What happens at the End?"
             
         },
+          # Informasi movies kesepuluh dalam sub list pertama, bentuk dictionary
         {
             "image": "https://www.themoviedb.org/movie/895006",
             "title": "Demon Slayer: Kimetsu no Yaiba - Tsuzumi Mansion Arc",
@@ -73,8 +86,9 @@ movies = [
 
         },
     ],
-
+    # Sub list kedua!
     [
+        # Informasi movies pertama dalam sub list kedua dalam bentuk dictionary
         {
             "image": "https://www.themoviedb.org/movie/985103-untitled-kral-sakir-sequel",
             "title": "July 14, 2022",
@@ -82,6 +96,7 @@ movies = [
             "description": "Scientists trying to solve the environmental crisis of pollution devise a way to send the collected garbage into space via rocket ships. When this garbage starts to land on alien planets, the outraged aliens head to Earth for revenge. King Shakir and his family must do"
 
         },
+        # Informasi movies kedua dalam sub list kedua, bentuk dictionary
         {
             "image": "https://www.themoviedb.org/movie/635302",
             "title": "Demon Slayer -Kimetsu no Yaiba- The Movie: Mugen Train",
@@ -89,15 +104,18 @@ movies = [
             "description": "Tanjiro Kamado, joined with Inosuke Hashibira, a boy raised by boars who wears a boar's head, and Zenitsu Agatsuma, a scared boy who reveals his true power when he sleeps, boards the Infinity Train on a new mission with the Fire Hashira, Kyojuro Rengoku, to"
 
         },
+         # Informasi movies ketiga dalam sub list kedua, bentuk dictionary
         {
             "image": "https://www.themoviedb.org/movie/113082-beruseruku-ougon-jidaihen-i-haou-no-tamago",
             "title": "Berserk: The Golden Age Arc I - The Egg of the King",
             "relase_date": "February 3, 2012",
             "description": "Guts, an immensely strong sword-for-hire, has little direction in his life, simply fighting one battle after the next. However, this all changes suddenly when he meets and is bested by Griffith, a beautiful and charismatic young man who leads the Band of the Hawk"
         }
-    ]
+        
+    ]    
 ]
 
+# Mendefinisikan list 'details' yang berisi dua dictionary yang mewakili informasi details tentang movies
 details = [
     {
         "image": "https://www.themoviedb.org/movie/1067282",
@@ -193,6 +211,7 @@ details = [
     
 ]
 
+# Mendefinisikan list 'trandings' yang mewakili movies popular dengan informasi tambahan
 trandings = [
     {
         "image": "https://www.themoviedb.org/movie/1067282",
@@ -331,45 +350,65 @@ des= [
     },
 ]
 
+# Inisialisasi list kosong untuk menyimpan data film yang akan ditambahkan
 add_movies = []
 
+# Route utama ("/") untuk menampilkan list film yang telah ditambahkan
 @app.route("/")
 def index():
     return add_movies
 
+# Route untuk menampilkan detail movie berdasarkan ID movie yang diberikan ("/details/<int:movie_id>">
 @app.route("/details/<int:movie_id>")
 def detail(movie_id):
+    # Mengembalikan detail film berdasarkan ID yang diberikan
     return details[movie_id]
 
+# Route untuk melakukan paginasi terhadap list film ("/movies")
 @app.route("/movies")
 def pagination():
+    # Mendapatkan nomor halaman dari parameter query 'page' (jika tidak tidak ada, default ke 1)
     page = request.args.get('page', type=int)
-
+    # Memastikan bahwa nomor halaman tidak kurang dari 1
     if page < 1:
         return "Page Minimal 1"
-
+    # Mengembalikan list movie pada halaman yang diminta
     return movies[page - 1]
 
+# Route untuk list film popular ("/popular") dengan metode GET
 @app.route("/popular", methods=['GET'])
 def get_popular():
+    # Inisialisasi list kosong untuk menyimpan list movie popular
     popular_movies = []
+    # Iterasi melalui list movie yang sedang tren (trandings)
     for tranding in trandings:
+        # Memeriksa apakah rating film lebih besar atau sama dengan 70
         if tranding["info"]["rating"] >= 70:
+            # Jika ya, tambahkan movie ke daftar popular
             popular_movies.append(tranding)
+    # Mengembalikan list movie popular sebagai respons dari permintaan GET
     return popular_movies
 
-
+# Route untuk melakukan pencarian ("/search") dengan metode GET
 @app.route("/search", methods = ["GET"])
 def get_search():
+    # Mengembalikan nilai parameter 'data' dari query string
     data = request.args.get('data')
+    # Memeriksa apakah parameter 'data' telah diberikan
     if data:
+        # Membuat list hasil pencarian dengan menggunakan list comprehension
+        # Mencari setiap elemen 'secs' yang memiliki judul yang mengandung string 'data' (case-insensitive)
         results_s = [item for item in secs if data.lower() in item["title"].lower()]
+        # Memeriksa apakah ada hasil pencarian
         if results_s:
+            # Jika ada hasil pencarian, mengembalikan hasil pencarian pertama sebagai JSON response
             return jsonify(results_s[0])
         else:
+            # Jika tidak ada hasil pencarian, mengembalikan pesan bahwa data tidak ditemukan dengan status 404
             return jsonify({'message':'Data not found!'}), 404
     
     else:
+        # Jika parameter 'data' tidak diberikan, mengembalikan pesan bahwa kunci pencarian tidak diberikan dengan status 404
         return jsonify({'message':'Search key not provided!'}), 404
     
 @app.route("/movies", methods=["POST"])
