@@ -410,24 +410,28 @@ def get_search():
     else:
         # Jika parameter 'data' tidak diberikan, mengembalikan pesan bahwa kunci pencarian tidak diberikan dengan status 404
         return jsonify({'message':'Search key not provided!'}), 404
-    
+        
+# Route untuk menambahkan movie baru ("/movies") dengan metode post    
 @app.route("/movies", methods=["POST"])
 def add_movie():
+    # Membuat objek movie baru berdasarkan data yang diterima dari form
     movie = {
         "title": request.form['title'],
         "description": request.form['description']
     }
-
+    # Menambahkan movie baru ke dalam list add_movies
     add_movies.append(movie)
-
+    # Mengembalikan pesan sukses beserta status 201 (created) sebagai respons dari permintaan POST
     return jsonify({'message':'Success Add Movie!'}), 201
 
+# Route untuk menghapus movie berdasarkan ID ("/movies") dengan metode DELETE
 @app.route("/movies", methods=["DELETE"])
 def delete_movie():
+    # Mengambil nilai parameter 'id' dari query string dan mengkonversinya ke tipe data int
     id = request.args.get('id', type=int)
-
+    # Menghapus movie dari list add_movies berdasarkan ID yang diberikan
     add_movies.pop(id)
-
+    # Mengembalikan pesan sukses beserta status 200 (OK) sebagai respon dari permintaan DELETE
     return jsonify({'message':'Success Delete Movie!'}), 200
 
 #@app.route("/movies", methods=["PATCH"])
